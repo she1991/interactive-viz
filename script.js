@@ -61,13 +61,13 @@ function drawViz(){
     var xMap = function(d){return xScale(xValue(d));},
         xAxis = d3.axisBottom(xScale);
     var yValue = function(d){return d["y-reading"]};
-        yScale = d3.scaleLinear().range([0,width]);
+        yScale = d3.scaleLinear().range([0,height]);
     var yMap = function(d){return yScale(yValue(d));},
         yAxis = d3.axisLeft(yScale);
 
     data.forEach(function(d){
         xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
-        yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
+        yScale.domain([d3.max(data, yValue)+1, d3.min(data, yValue)-1]);
     });
 
     // x-axis
